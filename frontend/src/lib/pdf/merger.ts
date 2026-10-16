@@ -49,10 +49,7 @@ export async function mergePdfs(files: File[]): Promise<MergedResult> {
   }
 
   const mergedBytes = await mergedPdf.save();
-  const blob = new Blob([mergedBytes], { type: "application/pdf" });
-
-  // Blob type issue fix
-  const mergedBlob = new Blob([mergedBytes as BlobPart], {
+  const mergedBlob = new Blob([mergedBytes as unknown as BlobPart], {
     type: "application/pdf",
   });
 

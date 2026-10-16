@@ -73,7 +73,7 @@ export async function compressPdf(
     useObjectStreams: true, // Better compression
   });
 
-  const compressedBlob = new Blob([compressedBytes as BlobPart], {
+  const compressedBlob = new Blob([compressedBytes as unknown as BlobPart], {
     type: "application/pdf",
   });
 
