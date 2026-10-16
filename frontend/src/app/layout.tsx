@@ -16,9 +16,6 @@ export const metadata: Metadata = {
     "gpa calculator",
     "cgpa calculator",
   ],
-  verification: {
-    google: "nxSmwnW_j9ulhjiwgS2ij6ntx5D5ba_cAcuYsYKjyYg",
-  },
 };
 
 export default function RootLayout({
@@ -28,6 +25,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="nxSmwnW_j9ulhjiwgS2ij6ntx5D5ba_cAcuYsYKjyYg"
+        />
+      </head>
       <body className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">{children}</main>
