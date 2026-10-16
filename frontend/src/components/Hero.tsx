@@ -40,15 +40,34 @@ export default function Hero() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
-      <div className="page-container" style={{ textAlign: "center" }}>
+    <section
+      style={{
+        background: "linear-gradient(to bottom, #eff6ff, #ffffff)",
+        paddingTop: "4rem",
+        paddingBottom: "4rem",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "1rem",
+          paddingRight: "1rem",
+          textAlign: "center",
+          width: "100%",
+        }}
+      >
         {/* Tagline */}
         <h1
           style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
             fontWeight: "bold",
             lineHeight: "1.15",
             color: "#111827",
+            maxWidth: "900px",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
           Free Tools for <span style={{ color: "#2563eb" }}>Students</span>
@@ -57,7 +76,7 @@ export default function Hero() {
         <p
           style={{
             marginTop: "1.5rem",
-            fontSize: "1.125rem",
+            fontSize: "clamp(1rem, 2vw, 1.125rem)",
             color: "#4b5563",
             maxWidth: "640px",
             marginLeft: "auto",
@@ -77,6 +96,7 @@ export default function Hero() {
             marginLeft: "auto",
             marginRight: "auto",
             position: "relative",
+            width: "100%",
           }}
         >
           <div style={{ position: "relative" }}>
@@ -93,6 +113,7 @@ export default function Hero() {
                 fontSize: "1rem",
                 outline: "none",
                 boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                boxSizing: "border-box",
               }}
             />
             <svg
@@ -165,6 +186,7 @@ export default function Hero() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
+            alignItems: "center",
             gap: "0.5rem",
             fontSize: "0.875rem",
           }}
