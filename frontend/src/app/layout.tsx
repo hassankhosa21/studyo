@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "gpa calculator",
     "cgpa calculator",
   ],
+  verification: {
+    google: "nxSmwnW_j9ulhjiwgS2ij6ntx5D5ba_cAcuYsYKjyYg",
+  },
 };
 
 export default function RootLayout({
