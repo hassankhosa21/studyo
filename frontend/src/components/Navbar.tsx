@@ -11,6 +11,7 @@ const tools = [
   { name: "Word Counter", href: "/word-counter", icon: "🔢" },
   { name: "GPA Calculator", href: "/gpa-calculator", icon: "🎓" },
   { name: "DOC to PDF", href: "/doc-to-pdf", icon: "📝" },
+    { name: "PDF to DOC", href: "/pdf-to-doc", icon: "📝" },
 ];
 
 export default function Navbar() {

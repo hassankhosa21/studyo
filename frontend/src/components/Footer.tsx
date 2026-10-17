@@ -8,6 +8,7 @@ const tools = [
   { name: "Word Counter", href: "/word-counter" },
   { name: "GPA Calculator", href: "/gpa-calculator" },
     { name: "DOC to PDF", href: "/doc-to-pdf" },
+      { name: "PDF to DOC", href: "/pdf-to-doc" },
 ];
 
 const company = [

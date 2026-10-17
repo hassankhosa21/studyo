@@ -53,6 +53,13 @@ const tools = [
     icon: "📝",
     color: "#e0e7ff",
   },
+    {
+    name: "PDF to DOC",
+    description: "Convert PDF documents to editable Word (.docx) files.",
+    href: "/pdf-to-doc",
+    icon: "📝",
+    color: "#e0f2fe",
+  },
 ];
 
 export default function ToolsGrid() {
