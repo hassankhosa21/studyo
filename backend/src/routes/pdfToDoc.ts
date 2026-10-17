@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import multer from "multer";
-import pdfParse from "pdf-parse";
+import { extractText } from "unpdf";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 
 const router = express.Router();
@@ -20,18 +20,19 @@ router.post(
         return res.status(400).json({ error: "No file uploaded." });
       }
 
-      // 1. Extract text from PDF
-      const pdfData = await pdfParse(req.file.buffer);
-      const text = pdfData.text;
+      // 1. Extract text from PDF using unpdf
+      const uint8Array = new Uint8Array(req.file.buffer);
+      const { text } = await extractText(uint8Array);
+      const fullText = text.join("\n");
 
-      if (!text || text.trim() === "") {
+      if (!fullText || fullText.trim() === "") {
         return res
           .status(400)
           .json({ error: "The PDF appears to be empty or contains only images (scanned)." });
       }
 
       // 2. Convert text to DOCX paragraphs
-      const paragraphs = text.split("\n").map((line) => {
+      const paragraphs = fullText.split("\n").map((line) => {
         return new Paragraph({
           children: [
             new TextRun({
@@ -40,7 +41,7 @@ router.post(
               font: "Arial",
             }),
           ],
-          spacing: { after: 120 }, // spacing between paragraphs
+          spacing: { after: 120 },
         });
       });
 
@@ -54,7 +55,7 @@ router.post(
         ],
       });
 
-      // 4. Generate DOCX buffer
+      // 4. Generate DOCX buffer using Packer (bina canvas ke)
       const buffer = await Packer.toBuffer(doc);
 
       // 5. Send back to frontend
@@ -71,7 +72,7 @@ router.post(
 
     } catch (error) {
       console.error("PDF to DOC conversion error:", error);
-      res.status(500).json({ error: "Failed to convert PDF to DOC. Make sure the PDF is valid and not password protected." });
+      res.status(500).json({ error: "Failed to convert PDF to DOC. Make sure the PDF is valid." });
     }
   }
 );
