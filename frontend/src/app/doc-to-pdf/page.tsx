@@ -1,0 +1,281 @@
+"use client";
+
+import { useState, useRef } from "react";
+import ToolLayout from "@/components/ToolLayout";
+
+const relatedTools = [
+  { name: "PDF Merge", href: "/pdf-merge" },
+  { name: "PDF Compress", href: "/pdf-compress" },
+  { name: "Word Counter", href: "/word-counter" },
+];
+
+const howToSteps = [
+  "Select or drag & drop your .docx file.",
+  "Click 'Convert to PDF' and wait a few seconds.",
+  "Download your converted PDF file.",
+];
+
+const features = [
+  "Convert Word documents (.docx) to PDF",
+  "Preserves text content and paragraphs",
+  "Files are processed on our server and deleted instantly",
+  "No signup required",
+  "Fast and secure conversion",
+];
+
+const faqs = [
+  {
+    question: "Is my document safe?",
+    answer:
+      "Yes. Your file is uploaded securely to our server, converted, and immediately deleted. We do not store or share your documents.",
+  },
+  {
+    question: "Does it preserve formatting?",
+    answer:
+      "This tool extracts the text content and basic paragraph structure. Complex formatting like images, tables, and custom fonts may not be perfectly preserved.",
+  },
+  {
+    question: "What file types are supported?",
+    answer:
+      "Currently, we support .docx files (Microsoft Word 2007 and newer). Older .doc files are not supported.",
+  },
+];
+
+export default function DocToPdfPage() {
+  const [file, setFile] = useState<File | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // ⚠️ Yeh URL backend deploy hone ke baad badalna padega
+  // Agar local par test kar rahe ho toh: http://localhost:5000
+  // Agar Vercel par hai toh: https://studyo-6ozz.vercel.app
+  const BACKEND_URL = "https://studyo-6ozz.vercel.app";
+
+  const handleFileSelect = (selectedFiles: FileList | null) => {
+    if (!selectedFiles || selectedFiles.length === 0) return;
+    const f = selectedFiles[0];
+    if (!f.name.toLowerCase().endsWith(".docx")) {
+      setError("Please select a .docx file (Microsoft Word document).");
+      return;
+    }
+    setFile(f);
+    setError(null);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    handleFileSelect(e.dataTransfer.files);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleConvert = async () => {
+    if (!file) return;
+    setIsProcessing(true);
+    setError(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch(`${BACKEND_URL}/api/doc-to-pdf`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.error || "Failed to convert document. Please try again."
+        );
+      }
+
+      // Get PDF blob
+      const blob = await response.blob();
+
+      // Trigger download
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = file.name.replace(/\.docx$/i, ".pdf");
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // Reset
+      setFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } catch (err) {
+      console.error("Conversion error:", err);
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Try again."
+      );
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleClear = () => {
+    setFile(null);
+    setError(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  return (
+    <ToolLayout
+      title="DOC to PDF Converter"
+      description="Convert Microsoft Word documents (.docx) to PDF quickly and for free. Files are processed securely and deleted instantly."
+      howToSteps={howToSteps}
+      features={features}
+      faqs={faqs}
+      relatedTools={relatedTools}
+    >
+      {/* Upload Area */}
+      <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onClick={() => fileInputRef.current?.click()}
+        style={{
+          border: isDragging ? "2px dashed #2563eb" : "2px dashed #d1d5db",
+          background: isDragging ? "#eff6ff" : "#f9fafb",
+          borderRadius: "0.75rem",
+          padding: "2.5rem 1rem",
+          textAlign: "center",
+          cursor: "pointer",
+          transition: "all 0.2s",
+        }}
+      >
+        <div style={{ fontSize: "2.5rem" }}>📄</div>
+        <p
+          style={{
+            marginTop: "0.75rem",
+            fontSize: "1rem",
+            fontWeight: 500,
+            color: "#374151",
+          }}
+        >
+          {isDragging
+            ? "Drop .docx file here"
+            : "Drag & drop a .docx file or click to select"}
+        </p>
+        <p style={{ marginTop: "0.25rem", fontSize: "0.85rem", color: "#6b7280" }}>
+          Microsoft Word (.docx) — Max 10 MB
+        </p>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          onChange={(e) => handleFileSelect(e.target.files)}
+          style={{ display: "none" }}
+        />
+      </div>
+
+      {/* Selected File */}
+      {file && (
+        <div
+          style={{
+            marginTop: "1.5rem",
+            padding: "1rem",
+            background: "#f9fafb",
+            border: "1px solid #e5e7eb",
+            borderRadius: "0.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "0.75rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <p
+              style={{
+                fontSize: "0.95rem",
+                fontWeight: 500,
+                color: "#111827",
+                wordBreak: "break-all",
+              }}
+            >
+              📄 {file.name}
+            </p>
+            <p
+              style={{
+                fontSize: "0.8rem",
+                color: "#6b7280",
+                marginTop: "0.25rem",
+              }}
+            >
+              {(file.size / 1024).toFixed(1)} KB
+            </p>
+          </div>
+          <button
+            onClick={handleClear}
+            disabled={isProcessing}
+            style={{
+              padding: "0.375rem 0.75rem",
+              background: "transparent",
+              color: "#dc2626",
+              border: "1px solid #fca5a5",
+              borderRadius: "0.375rem",
+              fontSize: "0.85rem",
+              cursor: isProcessing ? "not-allowed" : "pointer",
+              fontWeight: 500,
+            }}
+          >
+            Remove
+          </button>
+        </div>
+      )}
+
+      {/* Error */}
+      {error && (
+        <div
+          style={{
+            marginTop: "1rem",
+            padding: "0.75rem 1rem",
+            background: "#fee2e2",
+            border: "1px solid #fca5a5",
+            borderRadius: "0.5rem",
+            color: "#991b1b",
+            fontSize: "0.9rem",
+          }}
+        >
+          {error}
+        </div>
+      )}
+
+      {/* Convert Button */}
+      {file && (
+        <button
+          onClick={handleConvert}
+          disabled={isProcessing}
+          style={{
+            marginTop: "1.25rem",
+            padding: "0.75rem 1.5rem",
+            width: "100%",
+            background: isProcessing ? "#93c5fd" : "#2563eb",
+            color: "white",
+            border: "none",
+            borderRadius: "0.5rem",
+            fontWeight: 600,
+            fontSize: "1rem",
+            cursor: isProcessing ? "not-allowed" : "pointer",
+          }}
+        >
+          {isProcessing ? "Converting... Please wait" : "Convert to PDF"}
+        </button>
+      )}
+    </ToolLayout>
+  );
+}

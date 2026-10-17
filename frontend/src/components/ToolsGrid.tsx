@@ -46,6 +46,13 @@ const tools = [
     icon: "🎓",
     color: "#fef9c3",
   },
+  {
+    name: "DOC to PDF",
+    description: "Convert Microsoft Word documents (.docx) to PDF quickly and securely.",
+    href: "/doc-to-pdf",
+    icon: "📝",
+    color: "#e0e7ff",
+  },
 ];
 
 export default function ToolsGrid() {
@@ -72,7 +79,7 @@ export default function ToolsGrid() {
               fontSize: "1.125rem",
             }}
           >
-            Six powerful tools. One place. Zero signup.
+            Seven powerful tools. One place. Zero signup.
           </p>
         </div>
 

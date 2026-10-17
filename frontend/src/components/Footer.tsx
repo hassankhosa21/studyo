@@ -7,6 +7,7 @@ const tools = [
   { name: "Citation Generator", href: "/citation-generator" },
   { name: "Word Counter", href: "/word-counter" },
   { name: "GPA Calculator", href: "/gpa-calculator" },
+    { name: "DOC to PDF", href: "/doc-to-pdf" },
 ];
 
 const company = [

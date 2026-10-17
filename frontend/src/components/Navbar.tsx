@@ -10,6 +10,7 @@ const tools = [
   { name: "Citation Generator", href: "/citation-generator", icon: "📝" },
   { name: "Word Counter", href: "/word-counter", icon: "🔢" },
   { name: "GPA Calculator", href: "/gpa-calculator", icon: "🎓" },
+  { name: "DOC to PDF", href: "/doc-to-pdf", icon: "📝" },
 ];
 
 export default function Navbar() {
