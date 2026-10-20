@@ -23,7 +23,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ background: "#0f172a", color: "#cbd5e1", marginTop: "4rem", borderTop: "1px solid #1e293b" }}>
+    <footer style={{ background: "#0f172a", color: "#cbd5e1", marginTop: "0", borderTop: "1px solid #1e293b" }}>
       <div
         className="page-container"
         style={{ paddingTop: "4rem", paddingBottom: "2.5rem" }}
@@ -40,18 +40,45 @@ export default function Footer() {
           <div>
             <Link
               href="/"
+              className="footer-logo"
               style={{
-                fontSize: "1.6rem",
-                fontWeight: 800,
-                color: "#f8fafc",
-                textDecoration: "none",
                 display: "inline-flex",
                 alignItems: "center",
+                gap: "0.5rem",
+                textDecoration: "none",
+                transition: "transform 0.3s ease",
               }}
             >
-              Studyo
-              <span style={{ color: "#06b6d4", fontSize: "2rem", lineHeight: 1, marginLeft: "2px", textShadow: "0 0 10px rgba(6,182,212,0.5)" }}>.</span>
+              <div
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "10px",
+                  background: "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 0 15px rgba(6, 182, 212, 0.5)",
+                  color: "#0f172a",
+                  fontWeight: 800,
+                  fontSize: "1.2rem",
+                }}
+              >
+                S
+              </div>
+              <span
+                style={{
+                  fontSize: "1.4rem",
+                  fontWeight: 800,
+                  color: "#f8fafc",
+                  letterSpacing: "-0.5px",
+                }}
+              >
+                Studyo
+                <span style={{ color: "#06b6d4" }}>.</span>
+              </span>
             </Link>
+            
             <p
               style={{
                 marginTop: "1rem",
@@ -168,6 +195,9 @@ export default function Footer() {
 
       {/* Responsive & Hover Styles */}
       <style>{`
+        .footer-logo:hover {
+          transform: translateY(-2px);
+        }
         .footer-link {
           color: #94a3b8;
           text-decoration: none;

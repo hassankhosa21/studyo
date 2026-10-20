@@ -18,18 +18,6 @@ const tools = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
-
-  const navLinkStyle = (key: string): React.CSSProperties => ({
-    color: hoveredLink === key ? "#2563eb" : "#475569",
-    textDecoration: "none",
-    fontSize: "0.95rem",
-    fontWeight: 600,
-    padding: "0.5rem 0.75rem",
-    borderRadius: "0.5rem",
-    background: hoveredLink === key ? "#eff6ff" : "transparent",
-    transition: "all 0.2s ease",
-  });
 
   return (
     <nav
@@ -37,10 +25,10 @@ export default function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "rgba(255, 255, 255, 0.85)", // Glassmorphism
+        background: "rgba(15, 23, 42, 0.85)",
         backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #e2e8f0",
-        boxShadow: "0 2px 15px rgba(0,0,0,0.02)",
+        borderBottom: "1px solid #1e293b",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
       }}
     >
       <div className="page-container">
@@ -52,20 +40,32 @@ export default function Navbar() {
             height: "72px",
           }}
         >
-          {/* Logo */}
+          {/* Premium Floating Logo */}
           <Link
             href="/"
+            className="nav-logo"
             style={{
-              fontSize: "1.6rem",
-              fontWeight: 800,
-              color: "#0f172a",
-              textDecoration: "none",
               display: "flex",
               alignItems: "center",
+              gap: "0.75rem",
+              textDecoration: "none",
             }}
           >
-            Studyo
-            <span style={{ color: "#06b6d4", fontSize: "2rem", lineHeight: 1, marginLeft: "2px" }}>.</span>
+            {/* Floating Neon Box */}
+            <div className="logo-box">
+              <div className="logo-inner">
+                {/* Custom SVG Logo */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="rgba(6, 182, 212, 0.2)" />
+                  <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
+            
+            <span className="logo-text">
+              Studyo<span className="logo-dot">.</span>
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -77,43 +77,17 @@ export default function Navbar() {
             }}
             className="desktop-menu"
           >
-            <Link
-              href="/"
-              style={navLinkStyle("home")}
-              onMouseEnter={() => setHoveredLink("home")}
-              onMouseLeave={() => setHoveredLink(null)}
-            >
+            <Link href="/" className="nav-link">
               Home
             </Link>
 
             {/* Tools Dropdown */}
             <div
               style={{ position: "relative" }}
-              onMouseEnter={() => {
-                setToolsOpen(true);
-                setHoveredLink("tools");
-              }}
-              onMouseLeave={() => {
-                setToolsOpen(false);
-                setHoveredLink(null);
-              }}
+              onMouseEnter={() => setToolsOpen(true)}
+              onMouseLeave={() => setToolsOpen(false)}
             >
-              <button
-                style={{
-                  background: hoveredLink === "tools" ? "#eff6ff" : "transparent",
-                  border: "none",
-                  color: hoveredLink === "tools" ? "#2563eb" : "#475569",
-                  fontSize: "0.95rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.35rem",
-                  padding: "0.5rem 0.75rem",
-                  borderRadius: "0.5rem",
-                  transition: "all 0.2s ease",
-                }}
-              >
+              <button className="nav-link" style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "none", cursor: "pointer" }}>
                 Tools
                 <span
                   style={{
@@ -135,42 +109,16 @@ export default function Navbar() {
                     right: 0,
                     marginTop: "0.5rem",
                     width: "280px",
-                    background: "white",
-                    border: "1px solid #e2e8f0",
+                    background: "#1e293b",
+                    border: "1px solid #334155",
                     borderRadius: "0.75rem",
-                    boxShadow:
-                      "0 20px 40px -10px rgba(0,0,0,0.1), 0 0 20px rgba(6, 182, 212, 0.05)",
+                    boxShadow: "0 20px 40px -10px rgba(0,0,0,0.5), 0 0 20px rgba(6, 182, 212, 0.1)",
                     overflow: "hidden",
                     padding: "0.5rem",
                   }}
                 >
                   {tools.map((tool) => (
-                    <Link
-                      key={tool.href}
-                      href={tool.href}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.75rem",
-                        padding: "0.625rem 0.75rem",
-                        borderRadius: "0.5rem",
-                        color: "#475569",
-                        textDecoration: "none",
-                        fontSize: "0.9rem",
-                        fontWeight: 500,
-                        transition: "all 0.2s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "#f0f9ff";
-                        e.currentTarget.style.color = "#2563eb";
-                        e.currentTarget.style.transform = "translateX(6px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "#475569";
-                        e.currentTarget.style.transform = "translateX(0)";
-                      }}
-                    >
+                    <Link key={tool.href} href={tool.href} className="dropdown-item">
                       <span style={{ fontSize: "1.125rem" }}>{tool.icon}</span>
                       <span>{tool.name}</span>
                     </Link>
@@ -179,20 +127,10 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link
-              href="/about"
-              style={navLinkStyle("about")}
-              onMouseEnter={() => setHoveredLink("about")}
-              onMouseLeave={() => setHoveredLink(null)}
-            >
+            <Link href="/about" className="nav-link">
               About
             </Link>
-            <Link
-              href="/contact"
-              style={navLinkStyle("contact")}
-              onMouseEnter={() => setHoveredLink("contact")}
-              onMouseLeave={() => setHoveredLink(null)}
-            >
+            <Link href="/contact" className="nav-link">
               Contact
             </Link>
           </div>
@@ -207,7 +145,7 @@ export default function Navbar() {
               fontSize: "1.5rem",
               cursor: "pointer",
               padding: "0.5rem",
-              color: "#0f172a",
+              color: "#f8fafc",
             }}
             className="mobile-menu-btn"
             aria-label="Toggle menu"
@@ -221,99 +159,140 @@ export default function Navbar() {
           <div
             style={{
               padding: "1rem 0",
-              borderTop: "1px solid #e2e8f0",
+              borderTop: "1px solid #334155",
             }}
           >
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "#0f172a",
-                textDecoration: "none",
-                fontWeight: 600,
-                borderRadius: "0.5rem",
-              }}
-            >
+            <Link href="/" onClick={() => setIsOpen(false)} className="nav-link" style={{ display: "block", padding: "0.75rem 1rem" }}>
               Home
             </Link>
             <div style={{ padding: "0.5rem 0" }}>
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: "#94a3b8",
-                  textTransform: "uppercase",
-                  marginBottom: "0.5rem",
-                  paddingLeft: "1rem",
-                }}
-              >
+              <p style={{ fontSize: "0.75rem", fontWeight: 600, color: "#64748b", textTransform: "uppercase", marginBottom: "0.5rem", paddingLeft: "1rem" }}>
                 Tools
               </p>
               {tools.map((tool) => (
-                <Link
-                  key={tool.href}
-                  href={tool.href}
-                  onClick={() => setIsOpen(false)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    padding: "0.75rem 1rem",
-                    color: "#475569",
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    borderRadius: "0.5rem",
-                  }}
-                >
+                <Link key={tool.href} href={tool.href} onClick={() => setIsOpen(false)} className="dropdown-item" style={{ padding: "0.75rem 1rem" }}>
                   <span>{tool.icon}</span>
                   <span>{tool.name}</span>
                 </Link>
               ))}
             </div>
-            <Link
-              href="/about"
-              onClick={() => setIsOpen(false)}
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "#0f172a",
-                textDecoration: "none",
-                fontWeight: 600,
-                borderRadius: "0.5rem",
-              }}
-            >
+            <Link href="/about" onClick={() => setIsOpen(false)} className="nav-link" style={{ display: "block", padding: "0.75rem 1rem" }}>
               About
             </Link>
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "#0f172a",
-                textDecoration: "none",
-                fontWeight: 600,
-                borderRadius: "0.5rem",
-              }}
-            >
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="nav-link" style={{ display: "block", padding: "0.75rem 1rem" }}>
               Contact
             </Link>
           </div>
         )}
       </div>
 
-      {/* Responsive styles */}
       <style>{`
+        /* Floating Logo Animations */
+        .nav-logo {
+          transition: transform 0.3s ease;
+        }
+        .nav-logo:hover {
+          transform: translateY(-2px);
+        }
+
+        .logo-box {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+          border: 1px solid rgba(6, 182, 212, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          animation: float 3.5s ease-in-out infinite; /* Speed tez ki hai */
+        }
+
+        /* Floating Animation (Faster & Higher) */
+        @keyframes float {
+          0% { transform: translateY(0px); box-shadow: 0 0 15px rgba(6, 182, 212, 0.15); }
+          50% { transform: translateY(-6px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.4); } /* Height badha di */
+          100% { transform: translateY(0px); box-shadow: 0 0 15px rgba(6, 182, 212, 0.15); }
+        }
+
+        .logo-inner {
+          color: #06b6d4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
+          z-index: 2;
+        }
+
+        /* Glowing shine effect on hover */
+        .logo-box::before {
+          content: "";
+          position: absolute;
+          top: -50%; left: -50%;
+          width: 200%; height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .nav-logo:hover .logo-box::before {
+          opacity: 1;
+        }
+
+        .logo-text {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #f8fafc;
+          letter-spacing: -0.5px;
+          display: flex;
+          align-items: center;
+        }
+        
+        .logo-dot {
+          color: #06b6d4;
+          font-size: 2rem;
+          line-height: 0.5;
+          margin-left: 2px;
+          text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+        }
+
+        /* Nav Links */
+        .nav-link {
+          color: #cbd5e1;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 500;
+          padding: 0.5rem 0.75rem;
+          border-radius: 0.5rem;
+          transition: all 0.2s ease;
+        }
+        .nav-link:hover {
+          color: #06b6d4;
+          background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Dropdown Items */
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.625rem 0.75rem;
+          border-radius: 0.5rem;
+          color: #cbd5e1;
+          text-decoration: none;
+          font-size: 0.9rem;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+        .dropdown-item:hover {
+          background: rgba(6, 182, 212, 0.1);
+          color: #06b6d4;
+          transform: translateX(4px);
+        }
+
         @media (max-width: 768px) {
-          .desktop-menu {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: block !important;
-          }
+          .desktop-menu { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
         }
       `}</style>
     </nav>
