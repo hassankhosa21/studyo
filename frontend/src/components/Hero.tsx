@@ -71,7 +71,7 @@ export default function Hero() {
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             fontWeight: 800,
             lineHeight: 1.1,
-            color: "#0f172a",
+            color: "#f8fafc", /* White text for dark theme */
             letterSpacing: "-1px",
             maxWidth: "900px",
             marginLeft: "auto",
@@ -79,7 +79,7 @@ export default function Hero() {
           }}
         >
           Free Tools for{" "}
-          <span style={{ color: "#2563eb", position: "relative" }}>
+          <span style={{ color: "#06b6d4", position: "relative", textShadow: "0 0 20px rgba(6, 182, 212, 0.5)" }}>
             Students
             <span
               style={{
@@ -101,7 +101,7 @@ export default function Hero() {
           style={{
             marginTop: "1.5rem",
             fontSize: "clamp(1.1rem, 2vw, 1.25rem)",
-            color: "#475569",
+            color: "#94a3b8", /* Light grey for dark theme */
             maxWidth: "640px",
             marginLeft: "auto",
             marginRight: "auto",
@@ -136,13 +136,13 @@ export default function Hero() {
               style={{
                 width: "100%",
                 padding: "1.25rem 1.25rem 1.25rem 3.5rem",
-                border: "1px solid #cbd5e1",
+                border: "1px solid #334155",
                 borderRadius: "9999px",
                 fontSize: "1.05rem",
                 outline: "none",
-                background: "white",
-                color: "#0f172a",
-                boxShadow: "0 10px 25px -5px rgba(0,0,0,0.05), 0 0 20px rgba(37,99,235,0.05)",
+                background: "#1e293b", /* Dark search bar */
+                color: "#f8fafc",
+                boxShadow: "0 10px 25px -5px rgba(0,0,0,0.3), 0 0 20px rgba(6,182,212,0.05)",
                 boxSizing: "border-box",
                 transition: "all 0.3s ease",
               }}
@@ -155,7 +155,7 @@ export default function Hero() {
                 transform: "translateY(-50%)",
                 width: "24px",
                 height: "24px",
-                color: "#94a3b8",
+                color: "#64748b",
               }}
               fill="none"
               stroke="currentColor"
@@ -178,10 +178,10 @@ export default function Hero() {
                 left: 0,
                 right: 0,
                 marginTop: "0.5rem",
-                background: "white",
-                border: "1px solid #e2e8f0",
+                background: "#1e293b",
+                border: "1px solid #334155",
                 borderRadius: "1rem",
-                boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
+                boxShadow: "0 20px 40px -10px rgba(0,0,0,0.5)",
                 zIndex: 10,
                 overflow: "hidden",
                 textAlign: "left",
@@ -202,7 +202,7 @@ export default function Hero() {
                     borderRadius: "0.5rem",
                     cursor: "pointer",
                     fontSize: "1rem",
-                    color: "#334155",
+                    color: "#e2e8f0",
                     fontWeight: 500,
                     transition: "all 0.2s ease",
                   }}
@@ -228,7 +228,7 @@ export default function Hero() {
             animationDelay: "0.3s",
           }}
         >
-          <span style={{ color: "#94a3b8", fontWeight: 500 }}>Popular:</span>
+          <span style={{ color: "#64748b", fontWeight: 500 }}>Popular:</span>
           {["PDF Merge", "GPA Calculator", "Image Compressor"].map((name) => {
             const tool = tools.find((t) => t.name === name);
             return (
@@ -238,14 +238,14 @@ export default function Hero() {
                 className="quick-link-btn"
                 style={{
                   padding: "0.4rem 1rem",
-                  background: "white",
-                  border: "1px solid #e2e8f0",
+                  background: "#1e293b",
+                  border: "1px solid #334155",
                   borderRadius: "9999px",
-                  color: "#475569",
+                  color: "#cbd5e1",
                   cursor: "pointer",
                   fontSize: "0.9rem",
                   fontWeight: 500,
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
                   transition: "all 0.2s ease",
                 }}
               >
@@ -256,10 +256,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Pure CSS Animations & Glows */}
+      {/* Pure CSS Animations & Glows for Dark Theme */}
       <style>{`
         .hero-bg {
-          background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f8fafc 100%);
+          background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
         }
         .hero-bg::before {
           content: "";
@@ -267,7 +267,7 @@ export default function Hero() {
           top: -20%; left: 50%;
           transform: translateX(-50%);
           width: 80%; height: 60%;
-          background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+          background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
           pointer-events: none;
           z-index: 0;
         }
@@ -276,8 +276,8 @@ export default function Hero() {
           position: absolute;
           top: 0; left: 0; width: 100%; height: 100%;
           background-image: 
-            linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+            linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
           background-size: 40px 40px;
           mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
           -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
@@ -286,16 +286,16 @@ export default function Hero() {
         }
         .hero-search-input:focus {
           border-color: #06b6d4 !important;
-          box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1), 0 10px 25px -5px rgba(0,0,0,0.05) !important;
+          box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15), 0 10px 25px -5px rgba(0,0,0,0.3) !important;
         }
         .search-result-item:hover {
-          background: #f0f9ff !important;
-          color: #2563eb !important;
+          background: rgba(6, 182, 212, 0.1) !important;
+          color: #06b6d4 !important;
         }
         .quick-link-btn:hover {
-          border-color: #2563eb !important;
-          color: #2563eb !important;
-          box-shadow: 0 4px 10px rgba(37,99,235,0.1) !important;
+          border-color: #06b6d4 !important;
+          color: #06b6d4 !important;
+          box-shadow: 0 4px 10px rgba(6, 182, 212, 0.2) !important;
           transform: translateY(-2px) !important;
         }
       `}</style>

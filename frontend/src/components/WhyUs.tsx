@@ -4,7 +4,7 @@ const reasons = [
     description:
       "No hidden charges, no premium walls. Every tool is completely free to use.",
     icon: "💰",
-    color: "#dcfce7",
+    color: "#dcfce7", // Kept original bright colors for icons
   },
   {
     title: "No Signup Required",
@@ -31,7 +31,7 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section style={{ padding: "5rem 0", background: "#f8fafc" }}>
+    <section style={{ padding: "5rem 0", background: "#0f172a" }}>
       <div className="page-container">
         
         {/* Section Header */}
@@ -40,7 +40,7 @@ export default function WhyUs() {
             style={{
               fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontWeight: 800,
-              color: "#0f172a",
+              color: "#f8fafc", /* White heading for dark theme */
               letterSpacing: "-0.5px",
             }}
           >
@@ -49,7 +49,7 @@ export default function WhyUs() {
           <p
             style={{
               marginTop: "0.75rem",
-              color: "#64748b",
+              color: "#94a3b8", /* Light grey text */
               fontSize: "1.125rem",
             }}
           >
@@ -64,10 +64,10 @@ export default function WhyUs() {
               key={reason.title}
               className="premium-card"
               style={{
-                background: "white",
+                background: "#1e293b", /* Dark card background */
                 padding: "1.75rem",
                 borderRadius: "1rem",
-                border: "1px solid #e2e8f0",
+                border: "1px solid #334155", /* Dark border */
                 transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                 position: "relative",
                 overflow: "hidden",
@@ -94,7 +94,7 @@ export default function WhyUs() {
                   marginTop: "1.25rem",
                   fontSize: "1.15rem",
                   fontWeight: 700,
-                  color: "#0f172a",
+                  color: "#f8fafc", /* White title */
                 }}
               >
                 {reason.title}
@@ -103,7 +103,7 @@ export default function WhyUs() {
                 style={{
                   marginTop: "0.5rem",
                   fontSize: "0.9rem",
-                  color: "#64748b",
+                  color: "#94a3b8", /* Light grey text */
                   lineHeight: 1.6,
                 }}
               >
@@ -114,12 +114,12 @@ export default function WhyUs() {
         </div>
       </div>
 
-      {/* Pure CSS Hover Effects */}
+      {/* Pure CSS Hover Effects for Dark Theme */}
       <style>{`
         .premium-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(37, 99, 235, 0.4) !important;
-          box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15) !important;
+          border-color: rgba(6, 182, 212, 0.5) !important;
+          box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.15) !important;
         }
         .premium-card:hover .reason-icon {
           transform: scale(1.1) rotate(5deg);

@@ -49,7 +49,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section style={{ padding: "5rem 0", background: "#f8fafc" }}>
+    <section style={{ padding: "5rem 0", background: "#0f172a" }}>
       <div className="page-container" style={{ maxWidth: "900px" }}>
         
         {/* Section Header */}
@@ -58,7 +58,7 @@ export default function FAQ() {
             style={{
               fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontWeight: 800,
-              color: "#0f172a",
+              color: "#f8fafc", /* White heading */
               letterSpacing: "-0.5px",
             }}
           >
@@ -67,7 +67,7 @@ export default function FAQ() {
           <p
             style={{
               marginTop: "0.75rem",
-              color: "#64748b",
+              color: "#94a3b8", /* Light grey text */
               fontSize: "1.125rem",
             }}
           >
@@ -84,12 +84,12 @@ export default function FAQ() {
                 key={index}
                 className={`faq-item ${isOpen ? "faq-open" : ""}`}
                 style={{
-                  background: "white",
-                  border: isOpen ? "1px solid #06b6d4" : "1px solid #e2e8f0",
+                  background: "#1e293b", /* Dark card bg */
+                  border: isOpen ? "1px solid #06b6d4" : "1px solid #334155",
                   borderRadius: "0.75rem",
                   overflow: "hidden",
                   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                  boxShadow: isOpen ? "0 10px 25px -5px rgba(6, 182, 212, 0.15)" : "0 2px 4px rgba(0,0,0,0.02)",
+                  boxShadow: isOpen ? "0 10px 25px -5px rgba(6, 182, 212, 0.2)" : "0 2px 4px rgba(0,0,0,0.2)",
                 }}
               >
                 <button
@@ -102,12 +102,12 @@ export default function FAQ() {
                     gap: "1rem",
                     padding: "1.25rem",
                     textAlign: "left",
-                    background: "white",
+                    background: "transparent", /* Transparent to show dark card */
                     border: "none",
                     cursor: "pointer",
                     fontSize: "1.05rem",
                     fontWeight: 600,
-                    color: isOpen ? "#2563eb" : "#0f172a",
+                    color: isOpen ? "#06b6d4" : "#f8fafc", /* Cyan if open, white if closed */
                     transition: "color 0.2s",
                   }}
                   aria-expanded={isOpen}
@@ -115,7 +115,7 @@ export default function FAQ() {
                   <span>{faq.question}</span>
                   <span
                     style={{
-                      color: isOpen ? "#06b6d4" : "#94a3b8",
+                      color: isOpen ? "#06b6d4" : "#64748b",
                       fontSize: "0.8rem",
                       transition: "transform 0.3s ease",
                       transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
@@ -135,7 +135,7 @@ export default function FAQ() {
                     <div
                       style={{
                         padding: "0 1.25rem 1.25rem 1.25rem",
-                        color: "#475569",
+                        color: "#94a3b8", /* Light grey answer text */
                         lineHeight: 1.7,
                         fontSize: "0.95rem",
                       }}

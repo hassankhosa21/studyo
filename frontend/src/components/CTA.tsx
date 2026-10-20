@@ -6,8 +6,8 @@ export default function CTA() {
       className="cta-section"
       style={{
         padding: "5rem 0",
-        background: "linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%)",
-        borderTop: "1px solid #e2e8f0",
+        background: "#0f172a", /* Deep Dark Background */
+        borderTop: "1px solid #1e293b",
         position: "relative",
         overflow: "hidden",
       }}
@@ -18,7 +18,7 @@ export default function CTA() {
           style={{
             fontSize: "clamp(2rem, 4vw, 2.75rem)",
             fontWeight: 800,
-            color: "#0f172a",
+            color: "#f8fafc", /* White heading */
             letterSpacing: "-0.5px",
           }}
         >
@@ -29,7 +29,7 @@ export default function CTA() {
           style={{
             marginTop: "1rem",
             fontSize: "1.125rem",
-            color: "#475569",
+            color: "#94a3b8", /* Light grey text */
             maxWidth: "640px",
             marginLeft: "auto",
             marginRight: "auto",
@@ -65,7 +65,7 @@ export default function CTA() {
           style={{
             marginTop: "2rem",
             fontSize: "0.9rem",
-            color: "#94a3b8",
+            color: "#64748b", /* Muted text */
             fontWeight: 500,
             animationDelay: "0.3s",
           }}
@@ -74,15 +74,15 @@ export default function CTA() {
         </p>
       </div>
 
-      {/* Pure CSS Styles for Buttons & Effects */}
+      {/* Pure CSS Styles for Dark Theme Buttons & Glows */}
       <style>{`
         .cta-section::before {
           content: "";
           position: absolute;
           top: 50%; left: 50%;
           transform: translate(-50%, -50%);
-          width: 60%; height: 100%;
-          background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+          width: 80%; height: 100%;
+          background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
           pointer-events: none;
           z-index: 0;
         }
@@ -92,18 +92,18 @@ export default function CTA() {
           align-items: center;
           justify-content: center;
           padding: 0.85rem 1.75rem;
-          background: #2563eb;
-          color: white;
-          font-weight: 600;
+          background: #06b6d4; /* Neon Cyan */
+          color: #0f172a; /* Dark text for contrast on bright button */
+          font-weight: 700;
           border-radius: 0.5rem;
           text-decoration: none;
-          box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+          box-shadow: 0 10px 20px -5px rgba(6, 182, 212, 0.4);
           transition: all 0.3s ease;
         }
         .cta-btn-primary:hover {
-          background: #1d4ed8;
+          background: #22d3ee; /* Lighter Cyan on hover */
           transform: translateY(-3px);
-          box-shadow: 0 15px 25px -5px rgba(37, 99, 235, 0.5), 0 0 15px rgba(6, 182, 212, 0.4);
+          box-shadow: 0 15px 25px -5px rgba(6, 182, 212, 0.6), 0 0 20px rgba(6, 182, 212, 0.3);
         }
 
         .cta-btn-secondary {
@@ -111,18 +111,19 @@ export default function CTA() {
           align-items: center;
           justify-content: center;
           padding: 0.85rem 1.75rem;
-          background: white;
-          color: #1e3a8a;
+          background: transparent;
+          color: #e2e8f0; /* Light text */
           font-weight: 600;
           border-radius: 0.5rem;
-          border: 1px solid #bfdbfe;
+          border: 1px solid #334155; /* Dark border */
           text-decoration: none;
           transition: all 0.3s ease;
         }
         .cta-btn-secondary:hover {
-          border-color: #2563eb;
+          border-color: #06b6d4; /* Cyan border on hover */
+          color: #06b6d4;
           transform: translateY(-3px);
-          box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05);
+          box-shadow: 0 10px 20px -5px rgba(6, 182, 212, 0.1);
         }
       `}</style>
     </section>

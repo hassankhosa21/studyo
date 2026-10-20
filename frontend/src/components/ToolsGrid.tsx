@@ -6,69 +6,69 @@ const tools = [
     description: "Combine multiple PDF files into one. Drag, drop, reorder, download.",
     href: "/pdf-merge",
     icon: "📄",
-    color: "#fee2e2", // Light red bg for icon
+    color: "#fee2e2", 
   },
   {
     name: "PDF Compress",
     description: "Reduce PDF file size without losing quality. Perfect for uploads.",
     href: "/pdf-compress",
     icon: "🗜️",
-    color: "#ffedd5", // Light orange
+    color: "#ffedd5", 
   },
   {
     name: "Image Compressor",
     description: "Compress JPG, PNG, WebP. Presets for passport, CNIC, and forms.",
     href: "/image-compressor",
     icon: "🖼️",
-    color: "#f3e8ff", // Light purple
+    color: "#f3e8ff", 
   },
   {
     name: "Citation Generator",
     description: "APA 7, MLA 9, IEEE, Harvard. Copy-paste ready citations.",
     href: "/citation-generator",
     icon: "📝",
-    color: "#dcfce7", // Light green
+    color: "#dcfce7", 
   },
   {
     name: "Word Counter",
     description: "Count words, characters, sentences. Keyword density and reading time.",
     href: "/word-counter",
     icon: "🔢",
-    color: "#dbeafe", // Light blue
+    color: "#dbeafe", 
   },
   {
     name: "GPA Calculator",
     description: "HEC-aligned 4.0 scale with university presets. Target CGPA planner.",
     href: "/gpa-calculator",
     icon: "🎓",
-    color: "#fef9c3", // Light yellow
+    color: "#fef9c3", 
   },
   {
     name: "DOC to PDF",
     description: "Convert Microsoft Word documents (.docx) to PDF quickly and securely.",
     href: "/doc-to-pdf",
     icon: "📝",
-    color: "#e0e7ff", // Light indigo
+    color: "#e0e7ff", 
   },
   {
     name: "PDF to DOC",
     description: "Convert PDF documents to editable Word (.docx) files.",
     href: "/pdf-to-doc",
     icon: "📝",
-    color: "#e0f2fe", // Light sky
+    color: "#e0f2fe", 
   },
   {
     name: "DOC File Merger",
     description: "Combine multiple Word documents (.docx) into one file.",
     href: "/doc-merge",
     icon: "📑",
-    color: "#fce7f3", // Light pink
+    color: "#fce7f3", 
   },
 ];
 
 export default function ToolsGrid() {
   return (
-    <section style={{ padding: "5rem 0", background: "#f8fafc" }}>
+    <section style={{ padding: "5rem 0", background: "#0f172a" }}>
       <div className="page-container">
         
         {/* Section Header */}
@@ -77,7 +77,7 @@ export default function ToolsGrid() {
             style={{
               fontSize: "clamp(2rem, 4vw, 2.75rem)",
               fontWeight: 800,
-              color: "#0f172a",
+              color: "#f8fafc", /* White heading */
               letterSpacing: "-0.5px",
             }}
           >
@@ -86,7 +86,7 @@ export default function ToolsGrid() {
           <p
             style={{
               marginTop: "0.75rem",
-              color: "#64748b",
+              color: "#94a3b8", /* Light grey text */
               fontSize: "1.125rem",
             }}
           >
@@ -105,8 +105,8 @@ export default function ToolsGrid() {
                 display: "flex",
                 flexDirection: "column",
                 padding: "1.75rem",
-                background: "white",
-                border: "1px solid #e2e8f0",
+                background: "#1e293b", /* Dark card bg */
+                border: "1px solid #334155", /* Dark border */
                 borderRadius: "1rem",
                 textDecoration: "none",
                 transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -114,7 +114,7 @@ export default function ToolsGrid() {
                 overflow: "hidden",
               }}
             >
-              {/* Subtle top border glow on hover (using CSS class) */}
+              {/* Subtle top border glow on hover */}
               <div className="card-glow"></div>
 
               <div
@@ -123,7 +123,7 @@ export default function ToolsGrid() {
                   width: "56px",
                   height: "56px",
                   borderRadius: "0.75rem",
-                  background: tool.color,
+                  background: tool.color, /* Kept original bright colors */
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -140,7 +140,7 @@ export default function ToolsGrid() {
                   marginTop: "1.25rem",
                   fontSize: "1.25rem",
                   fontWeight: 700,
-                  color: "#0f172a",
+                  color: "#f8fafc", /* White title */
                   transition: "color 0.2s",
                 }}
               >
@@ -151,9 +151,9 @@ export default function ToolsGrid() {
                 style={{
                   marginTop: "0.5rem",
                   fontSize: "0.9rem",
-                  color: "#64748b",
+                  color: "#94a3b8", /* Light grey description */
                   lineHeight: 1.6,
-                  flexGrow: 1, // Makes sure content pushes the arrow down
+                  flexGrow: 1,
                 }}
               >
                 {tool.description}
@@ -165,7 +165,7 @@ export default function ToolsGrid() {
                   marginTop: "1.25rem",
                   display: "flex",
                   alignItems: "center",
-                  color: "#2563eb",
+                  color: "#06b6d4", /* Neon Cyan */
                   fontSize: "0.9rem",
                   fontWeight: 600,
                 }}
@@ -187,20 +187,18 @@ export default function ToolsGrid() {
         </div>
       </div>
 
-      {/* Pure CSS Hover Effects & Neon Glows */}
+      {/* Pure CSS Hover Effects for Dark Theme */}
       <style>{`
-        /* Hover effect for Card (Lift and Shadow) */
         .premium-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(37, 99, 235, 0.4) !important;
-          box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15), 0 0 20px rgba(6, 182, 212, 0.05) !important;
+          border-color: rgba(6, 182, 212, 0.5) !important;
+          box-shadow: 0 20px 40px -10px rgba(6, 182, 212, 0.15), 0 0 20px rgba(6, 182, 212, 0.1) !important;
         }
 
-        /* Top glowing line */
         .card-glow {
           position: absolute;
           top: 0; left: 0; right: 0;
-          height: 3px;
+          height: 2px;
           background: linear-gradient(90deg, transparent, #06b6d4, transparent);
           opacity: 0;
           transition: opacity 0.3s ease;
@@ -209,17 +207,14 @@ export default function ToolsGrid() {
           opacity: 1;
         }
 
-        /* Icon Animation */
         .premium-card:hover .tool-icon {
           transform: scale(1.1) rotate(-5deg);
         }
 
-        /* Title Color Change */
         .premium-card:hover .tool-title {
-          color: #2563eb !important;
+          color: #06b6d4 !important; /* Neon Cyan on hover */
         }
 
-        /* Arrow Slide Animation */
         .premium-card:hover .tool-arrow {
           transform: translateX(6px);
         }
