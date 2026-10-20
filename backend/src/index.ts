@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import docToPdfRoute from "./routes/docToPdf";
 import pdfToDocRoute from "./routes/pdfToDoc";
+import docMergerRoute from "./routes/docMerger";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json({ limit: "50mb" }));
 // Routes
 app.use("/api", docToPdfRoute);
 app.use("/api", pdfToDocRoute);
+app.use("/api", docMergerRoute);
 
 // Health check route
 app.get("/api/health", (_req: Request, res: Response) => {

@@ -9,6 +9,7 @@ const tools = [
   { name: "GPA Calculator", href: "/gpa-calculator" },
     { name: "DOC to PDF", href: "/doc-to-pdf" },
       { name: "PDF to DOC", href: "/pdf-to-doc" },
+        { name: "DOC File Merger", href: "/doc-merge" },
 ];
 
 const company = [

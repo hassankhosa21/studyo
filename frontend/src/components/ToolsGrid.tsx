@@ -60,6 +60,13 @@ const tools = [
     icon: "📝",
     color: "#e0f2fe",
   },
+    {
+    name: "DOC File Merger",
+    description: "Combine multiple Word documents (.docx) into one file.",
+    href: "/doc-merge",
+    icon: "📑",
+    color: "#fce7f3",
+  },
 ];
 
 export default function ToolsGrid() {
@@ -86,7 +93,7 @@ export default function ToolsGrid() {
               fontSize: "1.125rem",
             }}
           >
-            Seven powerful tools. One place. Zero signup.
+            Nine powerful tools. One place. Zero signup.
           </p>
         </div>
 

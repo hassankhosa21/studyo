@@ -12,6 +12,7 @@ const tools = [
   { name: "GPA Calculator", href: "/gpa-calculator", icon: "🎓" },
   { name: "DOC to PDF", href: "/doc-to-pdf", icon: "📝" },
     { name: "PDF to DOC", href: "/pdf-to-doc", icon: "📝" },
+      { name: "DOC File Merger", href: "/doc-merge", icon: "📑" },
 ];
 
 export default function Navbar() {
