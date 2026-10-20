@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "Are my files safe? Do you upload them to your server?",
     answer:
-      "Your files never leave your device. All processing (PDF merging, image compression, word counting) happens directly in your browser. We don't upload, store, or share your files.",
+      "Most tools run 100% in your browser. For server-based tools (like DOC to PDF), your files are uploaded securely, processed instantly, and deleted immediately. We never store or share your files.",
   },
   {
     question: "Is the GPA calculator accurate for my university?",
@@ -49,15 +49,17 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section style={{ padding: "4rem 0", background: "white" }}>
+    <section style={{ padding: "5rem 0", background: "#f8fafc" }}>
       <div className="page-container" style={{ maxWidth: "900px" }}>
+        
         {/* Section Header */}
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div className="animate-fade-up" style={{ textAlign: "center", marginBottom: "3rem" }}>
           <h2
             style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              fontWeight: "bold",
-              color: "#111827",
+              fontSize: "clamp(2rem, 4vw, 2.75rem)",
+              fontWeight: 800,
+              color: "#0f172a",
+              letterSpacing: "-0.5px",
             }}
           >
             Frequently Asked Questions
@@ -65,7 +67,7 @@ export default function FAQ() {
           <p
             style={{
               marginTop: "0.75rem",
-              color: "#4b5563",
+              color: "#64748b",
               fontSize: "1.125rem",
             }}
           >
@@ -74,64 +76,77 @@ export default function FAQ() {
         </div>
 
         {/* FAQ List */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #e5e7eb",
-                borderRadius: "0.5rem",
-                overflow: "hidden",
-              }}
-            >
-              <button
-                onClick={() =>
-                  setOpenIndex(openIndex === index ? null : index)
-                }
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={index}
+                className={`faq-item ${isOpen ? "faq-open" : ""}`}
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "1rem",
-                  padding: "1rem 1.25rem",
-                  textAlign: "left",
                   background: "white",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  color: "#111827",
+                  border: isOpen ? "1px solid #06b6d4" : "1px solid #e2e8f0",
+                  borderRadius: "0.75rem",
+                  overflow: "hidden",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  boxShadow: isOpen ? "0 10px 25px -5px rgba(6, 182, 212, 0.15)" : "0 2px 4px rgba(0,0,0,0.02)",
                 }}
-                aria-expanded={openIndex === index}
               >
-                <span>{faq.question}</span>
-                <span
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
                   style={{
-                    color: "#6b7280",
-                    fontSize: "1rem",
-                    transition: "transform 0.2s",
-                    transform:
-                      openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1.25rem",
+                    textAlign: "left",
+                    background: "white",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "1.05rem",
+                    fontWeight: 600,
+                    color: isOpen ? "#2563eb" : "#0f172a",
+                    transition: "color 0.2s",
                   }}
+                  aria-expanded={isOpen}
                 >
-                  ▼
-                </span>
-              </button>
-              {openIndex === index && (
+                  <span>{faq.question}</span>
+                  <span
+                    style={{
+                      color: isOpen ? "#06b6d4" : "#94a3b8",
+                      fontSize: "0.8rem",
+                      transition: "transform 0.3s ease",
+                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    }}
+                  >
+                    ▼
+                  </span>
+                </button>
                 <div
                   style={{
-                    padding: "0 1.25rem 1rem 1.25rem",
-                    color: "#4b5563",
-                    lineHeight: 1.7,
-                    fontSize: "0.95rem",
+                    display: "grid",
+                    gridTemplateRows: isOpen ? "1fr" : "0fr",
+                    transition: "grid-template-rows 0.3s ease",
                   }}
                 >
-                  {faq.answer}
+                  <div style={{ overflow: "hidden" }}>
+                    <div
+                      style={{
+                        padding: "0 1.25rem 1.25rem 1.25rem",
+                        color: "#475569",
+                        lineHeight: 1.7,
+                        fontSize: "0.95rem",
+                      }}
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

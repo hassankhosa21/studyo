@@ -11,8 +11,8 @@ const tools = [
   { name: "Word Counter", href: "/word-counter", icon: "🔢" },
   { name: "GPA Calculator", href: "/gpa-calculator", icon: "🎓" },
   { name: "DOC to PDF", href: "/doc-to-pdf", icon: "📝" },
-    { name: "PDF to DOC", href: "/pdf-to-doc", icon: "📝" },
-      { name: "DOC File Merger", href: "/doc-merge", icon: "📑" },
+  { name: "PDF to DOC", href: "/pdf-to-doc", icon: "📝" },
+  { name: "DOC File Merger", href: "/doc-merge", icon: "📑" },
 ];
 
 export default function Navbar() {
@@ -21,14 +21,14 @@ export default function Navbar() {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   const navLinkStyle = (key: string): React.CSSProperties => ({
-    color: hoveredLink === key ? "#2563eb" : "#374151",
+    color: hoveredLink === key ? "#2563eb" : "#475569",
     textDecoration: "none",
     fontSize: "0.95rem",
-    fontWeight: 500,
+    fontWeight: 600,
     padding: "0.5rem 0.75rem",
     borderRadius: "0.5rem",
     background: hoveredLink === key ? "#eff6ff" : "transparent",
-    transition: "all 0.2s",
+    transition: "all 0.2s ease",
   });
 
   return (
@@ -37,9 +37,10 @@ export default function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "white",
-        borderBottom: "1px solid #e5e7eb",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+        background: "rgba(255, 255, 255, 0.85)", // Glassmorphism
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #e2e8f0",
+        boxShadow: "0 2px 15px rgba(0,0,0,0.02)",
       }}
     >
       <div className="page-container">
@@ -48,20 +49,23 @@ export default function Navbar() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            height: "64px",
+            height: "72px",
           }}
         >
           {/* Logo */}
           <Link
             href="/"
             style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              color: "#2563eb",
+              fontSize: "1.6rem",
+              fontWeight: 800,
+              color: "#0f172a",
               textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
             }}
           >
             Studyo
+            <span style={{ color: "#06b6d4", fontSize: "2rem", lineHeight: 1, marginLeft: "2px" }}>.</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -98,16 +102,16 @@ export default function Navbar() {
                 style={{
                   background: hoveredLink === "tools" ? "#eff6ff" : "transparent",
                   border: "none",
-                  color: hoveredLink === "tools" ? "#2563eb" : "#374151",
+                  color: hoveredLink === "tools" ? "#2563eb" : "#475569",
                   fontSize: "0.95rem",
-                  fontWeight: 500,
+                  fontWeight: 600,
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.35rem",
                   padding: "0.5rem 0.75rem",
                   borderRadius: "0.5rem",
-                  transition: "all 0.2s",
+                  transition: "all 0.2s ease",
                 }}
               >
                 Tools
@@ -115,7 +119,7 @@ export default function Navbar() {
                   style={{
                     fontSize: "0.7rem",
                     transform: toolsOpen ? "rotate(180deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s",
+                    transition: "transform 0.2s ease",
                   }}
                 >
                   ▼
@@ -130,12 +134,12 @@ export default function Navbar() {
                     top: "100%",
                     right: 0,
                     marginTop: "0.5rem",
-                    width: "260px",
+                    width: "280px",
                     background: "white",
-                    border: "1px solid #e5e7eb",
+                    border: "1px solid #e2e8f0",
                     borderRadius: "0.75rem",
                     boxShadow:
-                      "0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05)",
+                      "0 20px 40px -10px rgba(0,0,0,0.1), 0 0 20px rgba(6, 182, 212, 0.05)",
                     overflow: "hidden",
                     padding: "0.5rem",
                   }}
@@ -150,20 +154,20 @@ export default function Navbar() {
                         gap: "0.75rem",
                         padding: "0.625rem 0.75rem",
                         borderRadius: "0.5rem",
-                        color: "#374151",
+                        color: "#475569",
                         textDecoration: "none",
                         fontSize: "0.9rem",
                         fontWeight: 500,
-                        transition: "all 0.15s",
+                        transition: "all 0.2s ease",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "#eff6ff";
+                        e.currentTarget.style.background = "#f0f9ff";
                         e.currentTarget.style.color = "#2563eb";
-                        e.currentTarget.style.transform = "translateX(4px)";
+                        e.currentTarget.style.transform = "translateX(6px)";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "#374151";
+                        e.currentTarget.style.color = "#475569";
                         e.currentTarget.style.transform = "translateX(0)";
                       }}
                     >
@@ -203,7 +207,7 @@ export default function Navbar() {
               fontSize: "1.5rem",
               cursor: "pointer",
               padding: "0.5rem",
-              color: "#374151",
+              color: "#0f172a",
             }}
             className="mobile-menu-btn"
             aria-label="Toggle menu"
@@ -217,7 +221,7 @@ export default function Navbar() {
           <div
             style={{
               padding: "1rem 0",
-              borderTop: "1px solid #e5e7eb",
+              borderTop: "1px solid #e2e8f0",
             }}
           >
             <Link
@@ -226,9 +230,9 @@ export default function Navbar() {
               style={{
                 display: "block",
                 padding: "0.75rem 1rem",
-                color: "#374151",
+                color: "#0f172a",
                 textDecoration: "none",
-                fontWeight: 500,
+                fontWeight: 600,
                 borderRadius: "0.5rem",
               }}
             >
@@ -238,8 +242,8 @@ export default function Navbar() {
               <p
                 style={{
                   fontSize: "0.75rem",
-                  fontWeight: 600,
-                  color: "#9ca3af",
+                  fontWeight: 700,
+                  color: "#94a3b8",
                   textTransform: "uppercase",
                   marginBottom: "0.5rem",
                   paddingLeft: "1rem",
@@ -257,9 +261,10 @@ export default function Navbar() {
                     alignItems: "center",
                     gap: "0.5rem",
                     padding: "0.75rem 1rem",
-                    color: "#374151",
+                    color: "#475569",
                     textDecoration: "none",
                     fontSize: "0.9rem",
+                    fontWeight: 500,
                     borderRadius: "0.5rem",
                   }}
                 >
@@ -274,9 +279,9 @@ export default function Navbar() {
               style={{
                 display: "block",
                 padding: "0.75rem 1rem",
-                color: "#374151",
+                color: "#0f172a",
                 textDecoration: "none",
-                fontWeight: 500,
+                fontWeight: 600,
                 borderRadius: "0.5rem",
               }}
             >
@@ -288,9 +293,9 @@ export default function Navbar() {
               style={{
                 display: "block",
                 padding: "0.75rem 1rem",
-                color: "#374151",
+                color: "#0f172a",
                 textDecoration: "none",
-                fontWeight: 500,
+                fontWeight: 600,
                 borderRadius: "0.5rem",
               }}
             >

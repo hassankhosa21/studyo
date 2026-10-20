@@ -14,9 +14,9 @@ const reasons = [
     color: "#fee2e2",
   },
   {
-    title: "Your Files Never Leave Your Device",
+    title: "Your Files Stay Private",
     description:
-      "All processing happens in your browser. We never upload or store your files.",
+      "Most tools run in your browser. For server-based tools, your files are deleted instantly.",
     icon: "🔒",
     color: "#dbeafe",
   },
@@ -31,15 +31,17 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section style={{ padding: "4rem 0", background: "#f9fafb" }}>
+    <section style={{ padding: "5rem 0", background: "#f8fafc" }}>
       <div className="page-container">
+        
         {/* Section Header */}
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div className="animate-fade-up" style={{ textAlign: "center", marginBottom: "4rem" }}>
           <h2
             style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              fontWeight: "bold",
-              color: "#111827",
+              fontSize: "clamp(2rem, 4vw, 2.75rem)",
+              fontWeight: 800,
+              color: "#0f172a",
+              letterSpacing: "-0.5px",
             }}
           >
             Why Studyo?
@@ -47,7 +49,7 @@ export default function WhyUs() {
           <p
             style={{
               marginTop: "0.75rem",
-              color: "#4b5563",
+              color: "#64748b",
               fontSize: "1.125rem",
             }}
           >
@@ -60,33 +62,39 @@ export default function WhyUs() {
           {reasons.map((reason) => (
             <div
               key={reason.title}
+              className="premium-card"
               style={{
                 background: "white",
-                padding: "1.5rem",
-                borderRadius: "0.75rem",
-                border: "1px solid #e5e7eb",
+                padding: "1.75rem",
+                borderRadius: "1rem",
+                border: "1px solid #e2e8f0",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
               <div
+                className="reason-icon"
                 style={{
-                  width: "48px",
-                  height: "48px",
-                  borderRadius: "0.5rem",
+                  width: "56px",
+                  height: "56px",
+                  borderRadius: "0.75rem",
                   background: reason.color,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "1.5rem",
+                  fontSize: "1.75rem",
+                  transition: "transform 0.3s ease",
                 }}
               >
                 {reason.icon}
               </div>
               <h3
                 style={{
-                  marginTop: "1rem",
-                  fontSize: "1.125rem",
-                  fontWeight: 600,
-                  color: "#111827",
+                  marginTop: "1.25rem",
+                  fontSize: "1.15rem",
+                  fontWeight: 700,
+                  color: "#0f172a",
                 }}
               >
                 {reason.title}
@@ -94,8 +102,8 @@ export default function WhyUs() {
               <p
                 style={{
                   marginTop: "0.5rem",
-                  fontSize: "0.875rem",
-                  color: "#4b5563",
+                  fontSize: "0.9rem",
+                  color: "#64748b",
                   lineHeight: 1.6,
                 }}
               >
@@ -105,6 +113,18 @@ export default function WhyUs() {
           ))}
         </div>
       </div>
+
+      {/* Pure CSS Hover Effects */}
+      <style>{`
+        .premium-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(37, 99, 235, 0.4) !important;
+          box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15) !important;
+        }
+        .premium-card:hover .reason-icon {
+          transform: scale(1.1) rotate(5deg);
+        }
+      `}</style>
     </section>
   );
 }

@@ -10,6 +10,9 @@ const tools = [
   { name: "Citation Generator", href: "/citation-generator", keywords: ["citation", "apa", "mla", "ieee"] },
   { name: "Word Counter", href: "/word-counter", keywords: ["word", "count", "character"] },
   { name: "GPA Calculator", href: "/gpa-calculator", keywords: ["gpa", "cgpa", "calculator"] },
+  { name: "DOC to PDF", href: "/doc-to-pdf", keywords: ["doc", "word", "pdf", "convert"] },
+  { name: "PDF to DOC", href: "/pdf-to-doc", keywords: ["pdf", "doc", "word", "convert"] },
+  { name: "DOC Merger", href: "/doc-merge", keywords: ["doc", "word", "merge", "combine"] },
 ];
 
 export default function Hero() {
@@ -41,10 +44,13 @@ export default function Hero() {
 
   return (
     <section
+      className="hero-bg"
       style={{
-        background: "linear-gradient(to bottom, #eff6ff, #ffffff)",
-        paddingTop: "4rem",
-        paddingBottom: "4rem",
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
+        position: "relative",
+        overflow: "hidden",
+        textAlign: "center",
       }}
     >
       <div
@@ -54,34 +60,53 @@ export default function Hero() {
           marginRight: "auto",
           paddingLeft: "1rem",
           paddingRight: "1rem",
-          textAlign: "center",
-          width: "100%",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         {/* Tagline */}
         <h1
+          className="animate-fade-up"
           style={{
-            fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
-            fontWeight: "bold",
-            lineHeight: "1.15",
-            color: "#111827",
+            fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+            fontWeight: 800,
+            lineHeight: 1.1,
+            color: "#0f172a",
+            letterSpacing: "-1px",
             maxWidth: "900px",
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
-          Free Tools for <span style={{ color: "#2563eb" }}>Students</span>
+          Free Tools for{" "}
+          <span style={{ color: "#2563eb", position: "relative" }}>
+            Students
+            <span
+              style={{
+                position: "absolute",
+                bottom: "5px",
+                left: 0,
+                width: "100%",
+                height: "8px",
+                background: "rgba(6, 182, 212, 0.2)",
+                zIndex: -1,
+                borderRadius: "4px",
+              }}
+            ></span>
+          </span>
         </h1>
 
         <p
+          className="animate-fade-up"
           style={{
             marginTop: "1.5rem",
-            fontSize: "clamp(1rem, 2vw, 1.125rem)",
-            color: "#4b5563",
+            fontSize: "clamp(1.1rem, 2vw, 1.25rem)",
+            color: "#475569",
             maxWidth: "640px",
             marginLeft: "auto",
             marginRight: "auto",
             lineHeight: "1.6",
+            animationDelay: "0.1s",
           }}
         >
           PDF merge, image compression, citation generator, GPA calculator, and
@@ -90,13 +115,15 @@ export default function Hero() {
 
         {/* Search Bar */}
         <div
+          className="animate-fade-up"
           style={{
-            marginTop: "2.5rem",
+            marginTop: "3rem",
             maxWidth: "560px",
             marginLeft: "auto",
             marginRight: "auto",
             position: "relative",
             width: "100%",
+            animationDelay: "0.2s",
           }}
         >
           <div style={{ position: "relative" }}>
@@ -105,26 +132,30 @@ export default function Hero() {
               value={query}
               onChange={(e) => handleSearch(e.target.value)}
               placeholder="Search tools (e.g., pdf merge, gpa)"
+              className="hero-search-input"
               style={{
                 width: "100%",
-                padding: "1rem 1rem 1rem 3rem",
-                border: "1px solid #d1d5db",
+                padding: "1.25rem 1.25rem 1.25rem 3.5rem",
+                border: "1px solid #cbd5e1",
                 borderRadius: "9999px",
-                fontSize: "1rem",
+                fontSize: "1.05rem",
                 outline: "none",
-                boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                background: "white",
+                color: "#0f172a",
+                boxShadow: "0 10px 25px -5px rgba(0,0,0,0.05), 0 0 20px rgba(37,99,235,0.05)",
                 boxSizing: "border-box",
+                transition: "all 0.3s ease",
               }}
             />
             <svg
               style={{
                 position: "absolute",
-                left: "1rem",
+                left: "1.25rem",
                 top: "50%",
                 transform: "translateY(-50%)",
-                width: "20px",
-                height: "20px",
-                color: "#9ca3af",
+                width: "24px",
+                height: "24px",
+                color: "#94a3b8",
               }}
               fill="none"
               stroke="currentColor"
@@ -148,28 +179,32 @@ export default function Hero() {
                 right: 0,
                 marginTop: "0.5rem",
                 background: "white",
-                border: "1px solid #e5e7eb",
-                borderRadius: "0.5rem",
-                boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
+                border: "1px solid #e2e8f0",
+                borderRadius: "1rem",
+                boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
                 zIndex: 10,
                 overflow: "hidden",
                 textAlign: "left",
+                padding: "0.5rem",
               }}
             >
               {results.map((tool) => (
                 <button
                   key={tool.href}
                   onClick={() => goToTool(tool.href)}
+                  className="search-result-item"
                   style={{
                     width: "100%",
                     textAlign: "left",
-                    padding: "0.75rem 1.25rem",
+                    padding: "0.75rem 1rem",
                     background: "none",
                     border: "none",
-                    borderBottom: "1px solid #f3f4f6",
+                    borderRadius: "0.5rem",
                     cursor: "pointer",
                     fontSize: "1rem",
-                    color: "#1f2937",
+                    color: "#334155",
+                    fontWeight: 500,
+                    transition: "all 0.2s ease",
                   }}
                 >
                   {tool.name}
@@ -181,31 +216,37 @@ export default function Hero() {
 
         {/* Quick Links */}
         <div
+          className="animate-fade-up"
           style={{
-            marginTop: "2rem",
+            marginTop: "2.5rem",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
-            gap: "0.5rem",
-            fontSize: "0.875rem",
+            gap: "0.75rem",
+            fontSize: "0.9rem",
+            animationDelay: "0.3s",
           }}
         >
-          <span style={{ color: "#6b7280" }}>Popular:</span>
+          <span style={{ color: "#94a3b8", fontWeight: 500 }}>Popular:</span>
           {["PDF Merge", "GPA Calculator", "Image Compressor"].map((name) => {
             const tool = tools.find((t) => t.name === name);
             return (
               <button
                 key={name}
                 onClick={() => tool && goToTool(tool.href)}
+                className="quick-link-btn"
                 style={{
-                  padding: "0.25rem 0.75rem",
+                  padding: "0.4rem 1rem",
                   background: "white",
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid #e2e8f0",
                   borderRadius: "9999px",
-                  color: "#374151",
+                  color: "#475569",
                   cursor: "pointer",
-                  fontSize: "0.875rem",
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
+                  transition: "all 0.2s ease",
                 }}
               >
                 {name}
@@ -214,6 +255,50 @@ export default function Hero() {
           })}
         </div>
       </div>
+
+      {/* Pure CSS Animations & Glows */}
+      <style>{`
+        .hero-bg {
+          background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f8fafc 100%);
+        }
+        .hero-bg::before {
+          content: "";
+          position: absolute;
+          top: -20%; left: 50%;
+          transform: translateX(-50%);
+          width: 80%; height: 60%;
+          background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .hero-bg::after {
+          content: "";
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 100%;
+          background-image: 
+            linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+          background-size: 40px 40px;
+          mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .hero-search-input:focus {
+          border-color: #06b6d4 !important;
+          box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1), 0 10px 25px -5px rgba(0,0,0,0.05) !important;
+        }
+        .search-result-item:hover {
+          background: #f0f9ff !important;
+          color: #2563eb !important;
+        }
+        .quick-link-btn:hover {
+          border-color: #2563eb !important;
+          color: #2563eb !important;
+          box-shadow: 0 4px 10px rgba(37,99,235,0.1) !important;
+          transform: translateY(-2px) !important;
+        }
+      `}</style>
     </section>
   );
 }

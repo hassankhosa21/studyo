@@ -7,9 +7,9 @@ const tools = [
   { name: "Citation Generator", href: "/citation-generator" },
   { name: "Word Counter", href: "/word-counter" },
   { name: "GPA Calculator", href: "/gpa-calculator" },
-    { name: "DOC to PDF", href: "/doc-to-pdf" },
-      { name: "PDF to DOC", href: "/pdf-to-doc" },
-        { name: "DOC File Merger", href: "/doc-merge" },
+  { name: "DOC to PDF", href: "/doc-to-pdf" },
+  { name: "PDF to DOC", href: "/pdf-to-doc" },
+  { name: "DOC File Merger", href: "/doc-merge" },
 ];
 
 const company = [
@@ -23,16 +23,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ background: "#111827", color: "#d1d5db", marginTop: "4rem" }}>
+    <footer style={{ background: "#0f172a", color: "#cbd5e1", marginTop: "4rem", borderTop: "1px solid #1e293b" }}>
       <div
         className="page-container"
-        style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+        style={{ paddingTop: "4rem", paddingBottom: "2.5rem" }}
       >
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr",
-            gap: "2rem",
+            gap: "3rem",
           }}
           className="footer-grid"
         >
@@ -41,24 +41,27 @@ export default function Footer() {
             <Link
               href="/"
               style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                color: "#60a5fa",
+                fontSize: "1.6rem",
+                fontWeight: 800,
+                color: "#f8fafc",
                 textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
               }}
             >
               Studyo
+              <span style={{ color: "#06b6d4", fontSize: "2rem", lineHeight: 1, marginLeft: "2px", textShadow: "0 0 10px rgba(6,182,212,0.5)" }}>.</span>
             </Link>
             <p
               style={{
                 marginTop: "1rem",
-                fontSize: "0.875rem",
-                color: "#9ca3af",
-                lineHeight: 1.6,
-                maxWidth: "400px",
+                fontSize: "0.9rem",
+                color: "#94a3b8",
+                lineHeight: 1.7,
+                maxWidth: "350px",
               }}
             >
-              Free online tools for students. PDF merge, image compression,
+              Premium online tools for students. PDF merge, image compression,
               citation generator, GPA calculator — all in one place. No signup,
               no file uploads. Your files never leave your device.
             </p>
@@ -68,10 +71,11 @@ export default function Footer() {
           <div>
             <h3
               style={{
-                color: "white",
-                fontWeight: 600,
-                marginBottom: "1rem",
+                color: "#f8fafc",
+                fontWeight: 700,
+                marginBottom: "1.25rem",
                 fontSize: "1rem",
+                letterSpacing: "0.5px",
               }}
             >
               Tools
@@ -79,20 +83,16 @@ export default function Footer() {
             <ul
               style={{
                 listStyle: "none",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.5rem",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0.75rem",
               }}
             >
               {tools.map((tool) => (
                 <li key={tool.href}>
                   <Link
                     href={tool.href}
-                    style={{
-                      color: "#9ca3af",
-                      textDecoration: "none",
-                      fontSize: "0.875rem",
-                    }}
+                    className="footer-link"
                   >
                     {tool.name}
                   </Link>
@@ -105,10 +105,11 @@ export default function Footer() {
           <div>
             <h3
               style={{
-                color: "white",
-                fontWeight: 600,
-                marginBottom: "1rem",
+                color: "#f8fafc",
+                fontWeight: 700,
+                marginBottom: "1.25rem",
                 fontSize: "1rem",
+                letterSpacing: "0.5px",
               }}
             >
               Company
@@ -118,18 +119,14 @@ export default function Footer() {
                 listStyle: "none",
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.5rem",
+                gap: "0.75rem",
               }}
             >
               {company.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    style={{
-                      color: "#9ca3af",
-                      textDecoration: "none",
-                      fontSize: "0.875rem",
-                    }}
+                    className="footer-link"
                   >
                     {item.name}
                   </Link>
@@ -142,38 +139,49 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           style={{
-            marginTop: "3rem",
+            marginTop: "4rem",
             paddingTop: "2rem",
-            borderTop: "1px solid #1f2937",
+            borderTop: "1px solid #1e293b",
             display: "flex",
             flexDirection: "column",
-            gap: "0.75rem",
+            gap: "1rem",
             alignItems: "center",
             textAlign: "center",
           }}
         >
-          <p style={{ fontSize: "0.875rem", color: "#9ca3af" }}>
+          <p style={{ fontSize: "0.9rem", color: "#94a3b8" }}>
             © {currentYear} Studyo. All rights reserved.
           </p>
 
-          <p style={{ fontSize: "0.875rem", color: "#9ca3af" }}>
+          <p style={{ fontSize: "0.9rem", color: "#94a3b8" }}>
             Developed by{" "}
-            <span style={{ color: "#60a5fa", fontWeight: 600 }}>
+            <span style={{ color: "#06b6d4", fontWeight: 600 }}>
               Masood ul Hassan
             </span>
           </p>
 
-          <p style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+          <p style={{ fontSize: "0.8rem", color: "#64748b" }}>
             Not affiliated with HEC or any university. Results are estimates only.
           </p>
         </div>
       </div>
 
-      {/* Responsive grid styles */}
+      {/* Responsive & Hover Styles */}
       <style>{`
+        .footer-link {
+          color: #94a3b8;
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: all 0.2s ease;
+          display: inline-block;
+        }
+        .footer-link:hover {
+          color: #06b6d4;
+          transform: translateX(4px);
+        }
         @media (min-width: 768px) {
           .footer-grid {
-            grid-template-columns: 2fr 1fr 1fr !important;
+            grid-template-columns: 2fr 1.5fr 1fr !important;
           }
         }
       `}</style>
